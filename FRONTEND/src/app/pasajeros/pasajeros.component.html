@@ -1,3 +1,111 @@
 <app-breadcrumb titulo="PASAJEROS" ></app-breadcrumb>
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+          
+            <div class="col-2 text-left">
+                <button class="btn btn-info mt-2" style="font-size: small !important;"
+                    (click)="open(content,null)">Crear Pasajero </button>
+            </div>
+        </div>
+        <br>
 
-<p>pasajeros works!</p>
+        <div *ngIf="loading" class=" row justify-content-center align-items-center" style="position: relative;">
+            <div class="spinner-border text-primary " role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table    style="zoom: 0.86" class="table table-striped  ">
+                <thead style="text-align: center;" > 
+                    <th>ID PASAJERO  </th>
+                    <th> NOMBRE </th>
+                    <th> CORREO  </th>
+                    <th>    FECHA  DE NACIMIENTO </th>
+                    <th>OPCIONES </th>
+                </thead>
+                <tbody>
+                    <tr style="text-align: center;" *ngFor="let item of items; ; let i = index">
+                        <td>{{ i + 1 }}</td>
+                        <td>{{item.passname}}</td>
+                        <td>{{item.passemail}}</td>
+                        <td>{{item.passdob.split('T')[0]}}</td>
+        
+                        <!-- <td>
+                            <div ngbDropdown class="d-inline-block" container="body">
+                                <button class="btn" id="dropdownBasic1" ngbDropdownToggle>
+                                    <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+                                </button>
+                                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                                    <button class="dropdown-item" (click)="open(content, item)">
+                                        Editar
+                                    </button>
+                                    <button class="dropdown-item" (click)="eliminar(item.id)">
+                                        Eliminar
+                                    </button>
+                                </div>
+                            </div>
+                        </td> -->
+                        <td> 
+                            <a data-toggle="tooltip" data-original-title="Editar"
+                            (click)="open(content, item)">
+                            <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
+                        <a data-toggle="tooltip" data-original-title="Eliminar" (click)="eliminar(item.passid)">
+                            <i class="fa fa-trash text-danger m-r-10"></i> </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<ng-template #content let-modal>
+    <div class="modal-xl">
+        <div class="modal-header">
+            <h4 *ngIf="tipo.edit" class="modal-title">Editar </h4>
+            <h4 *ngIf="!tipo.edit" class="modal-title">Nueva </h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                      
+                        <div class="form-group">
+                            <label for="informacion1">
+                                <h4>Nombre</h4>
+                            </label>
+                            <input id="informacion1" [(ngModel)]="tipo.passname" name="informacion1"
+                                class="form-control ml-2" type="text" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="informacion1">
+                                <h4>Correo </h4>
+                            </label>
+                            <input id="informacion5" [(ngModel)]="tipo.passemail" name="informacion5"
+                                class="form-control ml-2" type="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="informacion1">
+                                <h4>Fecha de Nacimiento </h4>
+                            </label>
+                            <input id="informacion" [(ngModel)]="tipo.passdob" name="informacion55"
+                                class="form-control ml-2" type="date" required>
+                        </div>
+                      
+                       
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-inverse btn-sm" (click)="guardar();modal.close('Close click')">
+                Guardar Cambios
+            </button>
+        </div>
+    </div>
+
+</ng-template>

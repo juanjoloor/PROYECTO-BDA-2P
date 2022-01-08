@@ -51,16 +51,7 @@ export const ROUTES: RouteInfo[] = [
     extralink: false,
     submenu: []
   },
-  {
-    path: '/details',
-    title: 'DETAILS',
-    icon: 'mdi mdi-account-box',
-    class: '',
-    label: '',
-    labelClass: '',
-    extralink: false,
-    submenu: []
-  },
+
     
   
 ];
