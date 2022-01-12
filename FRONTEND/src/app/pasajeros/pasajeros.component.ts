@@ -20,7 +20,7 @@ export class PasajerosComponent implements OnInit {
     private modalService:NgbModal) { }
   ngOnInit(): void {
     this.getTipos();
-    this.getVuelos();
+
   }
   async getTipos(){
     const response= await this.requestServ.getTipo('pasajeros');

@@ -24,10 +24,7 @@ export const routes: Routes = [
         path: 'component',
         loadChildren: () => import('./component/component.module').then(m => m.ComponentsModule)
       },
-      {
-        path: 'batallas',
-        loadChildren: () => import('./batallas/batallas.module').then(m => m.BatallasModule)
-      },
+  
       {
         path: "vuelos",
         component: VuelosComponent,
